@@ -52,7 +52,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 ?>
 
 
-?>
+
 
 
 
