@@ -1,4 +1,22 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+$name =$_POST['name'];
+$email =$_POST['email'];
+$desc =$_POST['desc'];
 
+//submit into database
+$conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
+ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ $sql = "INSERT INTO `contact` ( `name`, `email`, `concern`) VALUES ( '$name', '$email', '$desc')";
+ $stmt = $conn->query($sql);
+$row = $stmt->insert();
+
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "serveradmin2", "pwd" => "zxcvbnm1!", "Database" => "floteq_dev", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:testdbsqlserver2.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -32,29 +50,6 @@
     </div>
   </div>
 </nav>
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-$name =$_POST['name'];
-$email =$_POST['email'];
-$desc =$_POST['desc'];
-
-//submit into database
-$conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $sql = "INSERT INTO `contact` ( `name`, `email`, `concern`) VALUES ( '$name', '$email', '$desc')";
-  $stmt = $conn->query($sql);
-  $row = $stmt->insert();
-
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "serveradmin2", "pwd" => "zxcvbnm1!", "Database" => "floteq_dev", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:testdbsqlserver2.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
-}
-?>
-
-
-
-
 
 
 <div class="container mt-3">
@@ -67,6 +62,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
     <input type="text" name ="name" class="form-control" id="name" aria-describedby="emailHelp">
     <div id="emailHelp" class="form-text"></div>
   </div>
+  
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
     <input type="email" name ="email" class="form-control" id="email" aria-describedby="emailHelp">
@@ -76,7 +72,6 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
   <div class="mb-3">
     <label for="desc" class="form-label">description</label>
     <textarea class="form-control"  name=" desc" id="desc" cols="30" rows="10"></textarea>
-    
   </div>
   
   <button type="submit" class="btn btn-primary">Submit</button>
