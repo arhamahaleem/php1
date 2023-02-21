@@ -44,6 +44,7 @@ $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433;
   $sql = "INSERT INTO `contact` (`sno`, `name`, `email`, `concern`) VALUES ('3', '$name', '$email', '$desc')";
   $stmt = $conn->query($sql);
   $row = $stmt->insert();
+}
 // SQL Server Extension Sample Code:
 $connectionInfo = array("UID" => "serveradmin2", "pwd" => "zxcvbnm1!", "Database" => "floteq_dev", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:testdbsqlserver2.database.windows.net,1433";
