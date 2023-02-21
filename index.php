@@ -1,22 +1,4 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-$name =$_POST['name'];
-$email =$_POST['email'];
-$desc =$_POST['desc'];
 
-//submit into database
-$conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
- $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
- $sql = "INSERT INTO `contact` ( `name`, `email`, `concern`) VALUES ( '$name', '$email', '$desc')";
- $stmt = $conn->query($sql);
-$row = $stmt->insert();
-
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "serveradmin2", "pwd" => "zxcvbnm1!", "Database" => "floteq_dev", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:testdbsqlserver2.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
-}
-?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -50,7 +32,26 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
     </div>
   </div>
 </nav>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+$name =$_POST['name'];
+$email =$_POST['email'];
+$desc =$_POST['desc'];
+}
 
+//submit into database
+$conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
+ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ $sql = "INSERT INTO `contact` ( `name`, `email`, `concern`) VALUES ( '$name', '$email', '$desc')";
+ $stmt = $conn->query($sql);
+$row = $stmt->insert();
+
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "serveradmin2", "pwd" => "zxcvbnm1!", "Database" => "floteq_dev", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:testdbsqlserver2.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
+
+?>
 
 <div class="container mt-3">
     <h2> Contact us</h2>
