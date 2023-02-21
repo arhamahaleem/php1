@@ -47,7 +47,9 @@ try {
  $concern = $_REQUEST['concern'];
 
 $sql = "INSERT INTO Contact (FullName, Email, Concern)VALUES ('$name', '$email','$concern')";
-$conn->exec($sql);
+$affected_row =$conn->exec($sql);
+echo $affected_row ;
+
 
  }
 catch (PDOException $e) {
