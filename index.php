@@ -7,7 +7,7 @@ try {
     $sql =("SELECT * from Contact where Sno=1");
     $stmt = $conn->query($sql);
     $row = $stmt->fetch();
-    echo"  $row[0] $row[1]";
+    echo"  $row[0] $row[1] $row[2] $row[3] ";
     $conn = NULL;
     
 //     commit github
