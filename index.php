@@ -87,8 +87,6 @@ catch (PDOException $e) {
 </html>
 
 
-//$affected_row =$conn->exec($sql);
-//echo $affected_row . "Row Inserted <br> ";
 
 
 
