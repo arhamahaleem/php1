@@ -41,7 +41,7 @@ $desc =$_POST['desc'];
 //submit into database
 $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $sql = "INSERT INTO `contact` (`sno`, `name`, `email`, `concern`) VALUES ('3', '$name', '$email', '$desc')";
+  $sql = "INSERT INTO `contact` ( `name`, `email`, `concern`) VALUES ( '$name', '$email', '$desc')";
   $stmt = $conn->query($sql);
   $row = $stmt->insert();
 }
