@@ -1,5 +1,4 @@
 
-
 <?php
 // PHP Data Objects(PDO) Sample Code:
 try {
@@ -10,8 +9,6 @@ try {
     $row = $stmt->insert();
     echo"  $row[0] $row[1] $row[2] $row[3] ";
     $conn = NULL;
-    
-//     commit github
 }
 catch (PDOException $e) {
     print("Error connecting to SQL Server.");
@@ -57,9 +54,6 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
     </div>
   </div>
 </nav>
-
-
-
 
 
 <div class="container mt-3">
