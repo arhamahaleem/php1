@@ -44,11 +44,12 @@ $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433;
   $sql = "INSERT INTO `contact` ( `name`, `email`, `concern`) VALUES ( '$name', '$email', '$desc')";
   $stmt = $conn->query($sql);
   $row = $stmt->insert();
-}
+
 // SQL Server Extension Sample Code:
 $connectionInfo = array("UID" => "serveradmin2", "pwd" => "zxcvbnm1!", "Database" => "floteq_dev", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:testdbsqlserver2.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
+}
 ?>
 
 
@@ -58,7 +59,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 <div class="container mt-3">
     <h2> Contact us</h2>
-<form action ="/testappphp.azurewebsites.net/" method="post">
+<form action ="https://testappphp.azurewebsites.net/" method="post">
     <div class="container">
   
   <div class="mb-3">
