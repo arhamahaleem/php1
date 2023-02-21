@@ -63,8 +63,8 @@ catch (PDOException $e) {
   
   <div class="mb-3">
     <label for="name" class="form-label">Name</label>
-    <input type="text" name ="name" class="form-control" id="name" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text"></div>
+    <input type="text" name ="name" class="form-control" id="name" aria-describedby="nameHelp">
+    <div id="nameHelp" class="form-text"></div>
   </div>
   
   <div class="mb-3">
@@ -74,7 +74,7 @@ catch (PDOException $e) {
   </div>
 
   <div class="mb-3">
-    <label for="concern" class="form-label">description</label>
+    <label for="concern" class="form-label">concern</label>
     <textarea class="form-control"  name=" concern" id="concern" cols="30" rows="10"></textarea>
   </div>
   
