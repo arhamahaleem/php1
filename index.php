@@ -1,5 +1,4 @@
 
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -34,11 +33,11 @@
   </div>
 </nav>
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+/*if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 $name =$_POST['name'];
 $email =$_POST['email'];
 $desc =$_POST['desc'];
-
+*/
 //submit into database
 $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -46,28 +45,8 @@ $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433;
   $stmt = $conn->query($sql);
   $row = $stmt->insert();
 
-        if($row){
-          echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Success!</strong> Your entry has been submitted.
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>';
-
-        }
-        else{
-       echo " record was not inserted successfully ";
-
-        }
-
-  }
 
 ?>
-
-
-
-
-
-
-
 
 
 
