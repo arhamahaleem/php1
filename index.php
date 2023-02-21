@@ -40,7 +40,7 @@
 try {
   $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  echo "connected <br>";
+  //echo "connected <br>";
 
  $name = $_REQUEST['name'];
  $email = $_REQUEST['email'];
