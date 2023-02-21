@@ -33,11 +33,11 @@
   </div>
 </nav>
 <?php
-/*if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 $name =$_POST['name'];
 $email =$_POST['email'];
 $desc =$_POST['desc'];
-*/
+
 //submit into database
 $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
