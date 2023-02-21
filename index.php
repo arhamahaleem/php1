@@ -47,8 +47,8 @@ try {
  $concern = $_REQUEST['concern'];
 
 $sql = "INSERT INTO Contact (FullName, Email, Concern)VALUES ('$name', '$email','$concern')";
-$affected_row =$conn->exec($sql);
-echo $affected_row . "Row Inserted <br> ";
+$conn->exec($sql);
+
  }
 catch (PDOException $e) {
   print("Error connecting to SQL Server.");
@@ -87,7 +87,8 @@ catch (PDOException $e) {
 </html>
 
 
-
+//$affected_row =$conn->exec($sql);
+//echo $affected_row . "Row Inserted <br> ";
 
 
 
