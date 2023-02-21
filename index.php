@@ -42,12 +42,11 @@ try {
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   echo "connected <br>";
 
-
  $name = $_REQUEST['name'];
  $email = $_REQUEST['email'];
- $desc = $_REQUEST['desc'];
+ $concern = $_REQUEST['concern'];
 
-$sql = "INSERT INTO Contact (FullName, Email, Concern)VALUES ('$name', '$email','$desc')";
+$sql = "INSERT INTO Contact (FullName, Email, Concern)VALUES ('$name', '$email','$concern')";
 $affected_row =$conn->exec($sql);
 echo $affected_row . "Row Inserted <br> ";
  }
@@ -75,8 +74,8 @@ catch (PDOException $e) {
   </div>
 
   <div class="mb-3">
-    <label for="desc" class="form-label">description</label>
-    <textarea class="form-control"  name=" desc" id="desc" cols="30" rows="10"></textarea>
+    <label for="concern" class="form-label">description</label>
+    <textarea class="form-control"  name=" concern" id="concern" cols="30" rows="10"></textarea>
   </div>
   
   <button type="submit" class="btn btn-primary">Submit</button>
