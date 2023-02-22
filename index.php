@@ -46,7 +46,7 @@ try {
  $email = $_REQUEST['email'];
  $concern = $_REQUEST['concern'];
 
-$sql = "INSERT INTO contactus (FullName, Email, Concern)VALUES ('$name', '$email','$concern')";
+$sql = "INSERT INTO Contact (FullName, Email, Concern)VALUES ('$name', '$email','$concern')";
 $affected_row =$conn->exec($sql);
 echo $affected_row ;
 
