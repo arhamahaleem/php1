@@ -59,7 +59,7 @@ catch (PDOException $e) {
 ?>
 
 <div class="container mt-3">
-    <h2> Contact us</h2>
+    <h2> Contact us now</h2>
 <form action ="" method="post">
     <div class="container">
   
