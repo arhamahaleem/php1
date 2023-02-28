@@ -58,6 +58,7 @@ catch (PDOException $e) {
  }
 ?>
 
+
 <div class="container mt-3">
     <h2> Contact us</h2>
 <form action ="" method="post">
@@ -68,6 +69,7 @@ catch (PDOException $e) {
     <input type="text" name ="name" class="form-control" id="name" aria-describedby="nameHelp">
     <div id="nameHelp" class="form-text"></div>
   </div>
+  
   
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
