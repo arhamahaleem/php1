@@ -15,28 +15,54 @@
     <img src="image/logo.png" alt="logo">
 
 </div>
+<?php
+   session_start();
+?>
 
 <?php
-//submit into database
- 
+// PHP Data Objects(PDO) Sample Code:
+
 try {
-  $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //echo "connected <br>";
+    $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "{your_password_here}");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
- 
- $email = $_REQUEST['email'];
- $password = $_REQUEST['password'];
+    if(isset($_POST["login"]))
+    {
+        if(empty($_POST["email"]) || empty($_POST["password"]))
+        {
+            $message = '<label>All filed is required</label>';
+        }
+        else{
+            $query = "SELECT * FROM Person WHERE Email =email AND Password = password";
+            $statement = $conn -> prepare ($query);
+            $statement -> execute(
+                array(
+                    'email' => $_POST["email"],
+                    'password' => $_POST["password"]
+                )
 
-$sql = "INSERT INTO Person (Email, Password)VALUES ('$email','$password')";
-$affected_row =$conn->exec($sql);
-echo $affected_row ;
-
- }
+                );
+    
+        }
+        $count = $statement->rowCount();
+        if($count > 0)
+        {
+            $_SESSION["email"] = $_POST ["email"];
+            $_SESSION["password"] = $_POST ["password"];
+         }
+         else{
+            $message ='<label> Wrong email or password</label>';
+         }
+        
+    }
+}
 catch (PDOException $e) {
-  print("Error connecting to SQL Server.");
-  die(print_r($e));
- }
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
 ?>
 
 
