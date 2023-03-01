@@ -48,8 +48,8 @@ catch (PDOException $e) {
   
 </div>
 <div class="body">
-     <p><a href="file:///C:/Users/Dell/Desktop/loginscreen/pass.html"><strong>Forgot password?</strong></a></p>
-    <p>Don't have an account?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="file:///C:/Users/Dell/Desktop/loginscreen/account.html"> <strong>Create an
+     <p><strong>Forgot password?</strong></a></p>
+    <p>Don't have an account?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Create an
      account</strong></a></p> 
      <button class="button" type="submit">Login</button>
 
