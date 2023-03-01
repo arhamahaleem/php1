@@ -12,29 +12,8 @@
 
 <body style= background-color:aliceblue>
 
-<?php
-//submit into database
- 
-try {
-  $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //echo "connected <br>";
-
- $email = $_REQUEST['email'];
- $password = $_REQUEST['password'];
- 
-
-$sql = "INSERT INTO LOGIN (Email,Password )VALUES ('$email',$password')";
-$affected_row =$conn->exec($sql);
-echo $affected_row ;
 
 
- }
-catch (PDOException $e) {
-  print("Error connecting to SQL Server.");
-  die(print_r($e));
- }
-?>
 <div class="img">
     <img src="image/logo.png" alt="logo">
 
