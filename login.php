@@ -40,7 +40,7 @@ catch (PDOException $e) {
 ?>
 
 <div class="container">
-    <form action="database" method="post">
+    <form action="" method="post">
      <label for ="email">Email</label><br><br>
      <input type="email" id="email" name ="email" size = "38" style="height:30px"  placeholder="Enter your email"><br><br>
      <label for="password">Password</label><br><br>
