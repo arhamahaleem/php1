@@ -38,14 +38,7 @@ try {
         else{
             $query = "SELECT * FROM Person WHERE Email =email AND Password = password";
             $statement = $conn -> prepare ($query);
-            $statement -> execute(
-                array(
-                    'email' => $_POST["email"],
-                    'password' => $_POST["password"]
-                )
-
-                );
-    
+            
         }
         $count = $statement->rowCount();
         if($count > 0)
@@ -55,7 +48,7 @@ try {
             $_SESSION["password"] = $_POST['password'];
         
            
-            exit;
+    
          }
          else{
             $message =" Wrong email or password";
