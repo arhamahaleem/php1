@@ -15,9 +15,6 @@
     <img src="image/logo.png" alt="logo">
 
 </div>
-<?php
-   session_start();
-?>
 
 <?php
 // PHP Data Objects(PDO) Sample Code:
@@ -38,25 +35,10 @@ try {
         else{
             $query = "SELECT * FROM Person WHERE Email =email AND Password = password";
             $statement = $conn -> prepare ($query);
-            $statement -> execute(
-                array(
-                    'email' => $_POST["email"],
-                    'password' => $_POST["password"]
-                )
-
-                );
-    
+           
         }
         $count = $statement->rowCount();
-        if($count > 0)
-        {
-            $_SESSION["email"] = $_POST ["email"];
-            $_SESSION["password"] = $_POST ["password"];
-         }
-         else{
-            $message ='<label> Wrong email or password</label>';
-         }
-        
+       echo $count;
     }
 }
 catch (PDOException $e) {
