@@ -20,10 +20,11 @@
 try {
     $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "{your_password_here}");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+
     $email = $_REQUEST['email'];
     $password = $_REQUEST['password'];
-    $sql = "INSERT INTO Person (FullName, Email, Concern)VALUES ('$name', '$email','$concern')";
+
+    $sql = "INSERT INTO Person (Email, Password )VALUES ('$email','$password')";
  $affected_row =$conn->exec($sql);
  echo $affected_row ;
 }
@@ -31,10 +32,7 @@ catch (PDOException $e) {
     print("Error connecting to SQL Server.");
     die(print_r($e));
 }
-
-
 ?>
-
 
 <div class="container">
     <form action="" method="post">
