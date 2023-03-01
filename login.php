@@ -15,10 +15,43 @@
     <img src="image/logo.png" alt="logo">
 
 </div>
+<?php
+// PHP Data Objects(PDO) Sample Code:
+try {
+    $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "{your_password_here}");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $email = $_REQUEST['email'];
+    $password = $_REQUEST['password'];
 
+    if(isset($_POST["login"]))
+    {
+        if(empty($_POST["email"]) || empty($_POST["password"]))
+        {
+            $message = '<label>All filed is required</label>';
+        }
+        else{
+            $query = "SELECT * FROM Person WHERE Email =:email AND Password = password";
+            $statement = $conn -> prepare ($query);
+    
+        }
+        $count = $statement->rowCount();
+        if($count > 0)
+        {
+            $_SESSION["email"] = $_POST ["email"];
+         }
+         else{
+            $message ='<label> Wrong email or password</label>'
+         }
+    }
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+?>
 
 <div class="container">
-    <form action="" method="post">
+    <form action="login.php" method="post">
      <label for ="email">Email</label><br><br>
      <input type="email" id="email" name ="email" size = "38" style="height:30px"  placeholder="Enter your email"><br><br>
      <label for="password">Password</label><br><br>
