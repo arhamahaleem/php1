@@ -15,7 +15,6 @@
     <img src="image/logo.png" alt="logo">
 
 </div>
-<?php
 
 <div class="container">
     <form action="" method="post">
