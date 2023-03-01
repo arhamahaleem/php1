@@ -40,8 +40,9 @@ try {
             $_SESSION["email"] = $_POST ["email"];
          }
          else{
-            $message ='<label> Wrong email or password</label>'
+            $message ='<label> Wrong email or password</label>';
          }
+        
     }
 }
 catch (PDOException $e) {
