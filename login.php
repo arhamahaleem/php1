@@ -17,6 +17,7 @@
 </div>
 <?php
 // PHP Data Objects(PDO) Sample Code:
+Session_start();
 try {
     $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "{your_password_here}");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -32,6 +33,13 @@ try {
         else{
             $query = "SELECT * FROM Person WHERE Email =:email AND Password = password";
             $statement = $conn -> prepare ($query);
+            $statement -> execute(
+                array(
+                    'email' => $_POST["email"],
+                    'password' => $_POST["password"]
+                )
+
+                );
     
         }
         $count = $statement->rowCount();
