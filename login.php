@@ -34,6 +34,7 @@ try {
         if(empty($_POST["email"]) || empty($_POST["password"]))
         {
             $message = '<label>All filed is required</label>';
+            echo $message ;
         }
         else{
             $query = "SELECT * FROM Person WHERE Email =email AND Password = password";
@@ -47,16 +48,7 @@ try {
                 );
     
         }
-        $count = $statement->rowCount();
-        if($count > 0)
-        {
-            $_SESSION["email"] = $_POST ["email"];
         
-            header("location:login_success.php");
-         }
-         else{
-            $message ='<label> Wrong email or password</label>';
-         }
         
     }
 }
