@@ -10,7 +10,7 @@ try {
     $email = $_GET['email'];
     $password = $_GET['password'];
 
-    if(isset($_POST["submit"]))
+    if(isset($_GET["submit"]))
     {
         if(empty($_GET["email"]) || empty($_GET["password"]))
         {
