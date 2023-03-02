@@ -1,6 +1,6 @@
 <?php
 include('connection.php');
-include('header');
+include('login_success.php');
 
 ?>
 <!DOCTYPE html>
