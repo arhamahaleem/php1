@@ -6,12 +6,12 @@ try {
     $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = $_GET['email'];
+    $password = $_GET['password'];
 
     if(isset($_POST["submit"]))
     {
-        if(empty($_POST["email"]) || empty($_POST["password"]))
+        if(empty($_GET["email"]) || empty($_GET["password"]))
         {
             $message = '<label>All filed is required</label>';
         }
@@ -23,7 +23,7 @@ try {
         if($count > 0)
         {
             
-            $_SESSION["email"] = $_POST["email"];      
+            $_SESSION["email"] = $_GET["email"];      
         
             header ("Location:login_success.php");
         

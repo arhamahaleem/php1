@@ -22,7 +22,7 @@ include('login_success.php');
 
 
 <div class="container">
-    <form action="login.php" method="post">
+    <form action="login.php" method="GET">
      <label for ="email">Email</label><br><br>
      <input type="email" id="email" name ="email" size = "38" style="height:30px"  placeholder="Enter your email" required><br><br>
      <label for="password">Password</label><br><br>
