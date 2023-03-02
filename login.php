@@ -29,7 +29,7 @@ try {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    if(isset($_POST["login"]))
+    if(isset($_POST["submit"]))
     {
         if(empty($_POST["email"]) || empty($_POST["password"]))
         {
@@ -39,21 +39,11 @@ try {
             $query = "SELECT * FROM Person WHERE Email =email AND Password = password";
             $statement = $conn -> prepare ($query);
             
-        }
-        $count = $statement->rowCount();
-        if($count > 0)
-        {
-            
             $_SESSION["email"] = $_POST['email'];      
             $_SESSION["password"] = $_POST['password'];
-        
-           
-    
-         }
-         else{
-            $message =" Wrong email or password";
-            echo $message ;
-         }
+            
+        }
+        $count = $statement->rowCount();
         
     }
 }
