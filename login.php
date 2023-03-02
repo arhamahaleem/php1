@@ -15,13 +15,11 @@
     <img src="image/logo.png" alt="logo">
 
 </div>
-<?php
-   session_start();
-?>
+
 
 <?php
 // PHP Data Objects(PDO) Sample Code:
-
+session_start();
 try {
     $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -38,13 +36,22 @@ try {
         else{
             $query = "SELECT * FROM Person WHERE Email =email AND Password = password";
             $statement = $conn -> prepare ($query);
-            
-            $_SESSION["email"] = $_POST['email'];      
-            $_SESSION["password"] = $_POST['password'];
-            
         }
         $count = $statement->rowCount();
+        if($count > 0)
+        {
+            
+            $_SESSION["email"] = $_POST['email'];      
         
+            header ("Location:login_success.php");
+        
+         }
+         else{
+            $message =" Wrong email or password";
+            echo $message ;
+         }
+        
+
     }
 }
 catch (PDOException $e) {
