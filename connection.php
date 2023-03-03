@@ -15,7 +15,7 @@ try {
             $query = "SELECT * FROM Person WHERE email ='$email' AND password = '$password' ";
             $statement = $conn->prepare ($query);
             $row =$statement->fetch_assoc();
-            $stmt->execute();
+         
             if($query->rowCount() > 0) {
               $_SESSION['email'] = $email;
               header('location:logout.php');
