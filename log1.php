@@ -1,28 +1,35 @@
+
+
 <?php
+	session_start();
  
- try {
-    $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-if(isset ($_POST['login'])){
-    $email=$_POST['email'];
-    $paasword=$_POST['password'];
-
-    $sql ="SELECT *from Person where email='$email' and password='$password'";
-    $statement = $conn->query ("$sql");
-    if(PDOStatement::rowCount($statement)>0){
-      
-
-    }
-    else{
-        echo" Wrong Login details";
-    }
-}
-
- }
- catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
+	require_once 'connection.php';
+ 
+	if(ISSET($_POST['login'])){
+		if($_POST['email'] != "" || $_POST['password'] != ""){
+			$email = $_POST['email'];
+			$password = $_POST['password'];
+			$sql = "SELECT * FROM `Person` WHERE `email`=? AND `password`=? ";
+			$query = $conn->prepare($sql);
+			$query->execute(array($email,$password));
+			$row = $query->rowCount();
+			$fetch = $query->fetch();
+			if($row > 0) {
+				$_SESSION['email'] = $fetch['password'];
+				header("location: login_success.php");
+			} else{
+				echo "
+				<script>alert('Invalid email or password')</script>
+				
+				";
+			}
+		}else{
+			echo "
+				<script>alert('Please complete the required field!')</script>
+				
+			";
+		}
+	}
 ?>
 
 <!DOCTYPE html>
