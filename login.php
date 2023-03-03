@@ -1,8 +1,6 @@
 <?php
 include('connection.php');
 include('login_success.php');
-include('logout.php');
-include('logged.php');
 
 ?>
 <!DOCTYPE html>
