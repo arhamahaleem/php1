@@ -9,8 +9,8 @@ if(isset ($_GET['login'])){
 
     $sql ="SELECT *from Person where email='$email' and password='$password'";
     $statement = $conn->query ("$sql");
-    if(PDOStatement::rowCount()>0){
-        $row =$statement ->fetch();
+    if(PDOStatement::rowCount($statement)>0){
+      
 
     }
     else{
