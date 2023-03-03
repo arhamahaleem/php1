@@ -30,6 +30,10 @@ try {
         
 
     }
+    if(!isset($_SESSION['email']) || $_SESSION['password'] !== TRUE){
+        // redirects you if sessions are not present
+        header("Location: logout.php");
+      }
 }
 
 catch (PDOException $e) {
