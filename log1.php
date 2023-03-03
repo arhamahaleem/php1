@@ -1,8 +1,30 @@
 <?php
-include('connection.php');
-include('login_success.php');
+ 
+ try {
+    $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+if(isset ($_GET['login'])){
+    $email=$_GET['email'];
+    $paasword=$_GET['password'];
 
+    $sql ="SELECT *from Person where email='$email' and password='$password'";
+    $statement = $conn->query ("$sql");
+    if(PDOStatement::rowCount()>0){
+        $row =$statement ->fetch();
+
+    }
+    else{
+        echo" Wrong Login details";
+    }
+}
+
+ }
+ catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,19 +43,18 @@ include('login_success.php');
 </div>
 
 <div class="container">
-    <form action="logged.php" method="POST" >
+    <form action="login.php" method="POST">
      <label for ="email">Email</label><br><br>
      <input type="email" id="email" name ="email" size = "38" style="height:30px"  placeholder="Enter your email" required><br><br>
      <label for="password">Password</label><br><br>
      <input type="password" id="password" name="password"size = "38" style="height:30px" placeholder="Enter your password" required><br><br>
-     
+  
 </div>
 <div class="body">
      <p><a href="file:///C:/Users/Dell/Desktop/loginscreen/pass.html"><strong>Forgot password?</strong></a></p>
     <p>Don't have an account?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="file:///C:/Users/Dell/Desktop/loginscreen/account.html"> <strong>Create an
      account</strong></a></p> 
      <input type="submit" class="button" name="login" value="Login">
-     
 </div>
 </form>
 </body>
