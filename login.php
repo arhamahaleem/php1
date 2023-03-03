@@ -1,7 +1,8 @@
 <?php
 include('connection.php');
 include('login_success.php');
-
+include('function.php');
+$msg="";
 ?>
 <!DOCTYPE html>
 <html lang="en">
