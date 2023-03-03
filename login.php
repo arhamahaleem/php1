@@ -21,7 +21,7 @@ include('login_success.php');
 </div>
 
 <div class="container">
-    <form action="login.php" method="POST" >
+    <form action="logged.php" method="POST" >
      <label for ="email">Email</label><br><br>
      <input type="email" id="email" name ="email" size = "38" style="height:30px"  placeholder="Enter your email" required><br><br>
      <label for="password">Password</label><br><br>
