@@ -7,24 +7,15 @@ try {
     $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $email = $_GET['email'];
-    $password = $_GET['password'];
 
     if(isset($_GET["login"]))
-    {
-        if(empty($_GET["email"]) || empty($_GET["password"]))
-        {
-            
+    {    
+         $email = $_GET['email'];
+          $password = $_GET['password'];
             $query = "SELECT * FROM Person WHERE email ='$email' AND password = '$password' ";
             $statement = $conn->prepare ($query);
-        }
-        else{
-            $message = '<label>All filed is required</label>';
-            echo $message;
-        }
-        $count = $statement->rowCount();
         
-        if($count>0)
+       if(PDOStatement::rowCount()>0)
         {
             
             $_SESSION["email"] = $_GET["email"];      
