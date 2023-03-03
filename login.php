@@ -27,13 +27,13 @@ include('login_success.php');
      <input type="email" id="email" name ="email" size = "38" style="height:30px"  placeholder="Enter your email" required><br><br>
      <label for="password">Password</label><br><br>
      <input type="password" id="password" name="password"size = "38" style="height:30px" placeholder="Enter your password" required><br><br>
-     <input type="submit" class="button" name="login" value="Login">
+     
 </div>
 <div class="body">
      <p><a href="file:///C:/Users/Dell/Desktop/loginscreen/pass.html"><strong>Forgot password?</strong></a></p>
     <p>Don't have an account?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="file:///C:/Users/Dell/Desktop/loginscreen/account.html"> <strong>Create an
      account</strong></a></p> 
-
+     <input type="submit" class="button" name="login" value="Login">
      
 </div>
 </form>
