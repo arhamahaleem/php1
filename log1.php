@@ -3,9 +3,9 @@
  try {
     $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-if(isset ($_GET['login'])){
-    $email=$_GET['email'];
-    $paasword=$_GET['password'];
+if(isset ($_POST['login'])){
+    $email=$_POST['email'];
+    $paasword=$_POST['password'];
 
     $sql ="SELECT *from Person where email='$email' and password='$password'";
     $statement = $conn->query ("$sql");
