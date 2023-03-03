@@ -1,44 +1,31 @@
 <?php
 session_start();
-if(isset($_POST['login'])){
+if(isset($_POST['a_login'])){
     $email =$_POST['email'];
     $password =$_POST['password'];
     try{
-       
         $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
     
-        $stmt = $conn->prepare('SELECT * FROM Person WHERE email = ?');
-        $stmt->bind_param('s', $_POST['email']);
-        $stmt->execute();
 
-// Store the result so we can check it later
-$row = $stmt->fetch();
-if($row){
-
-    // use the 'password verify' only if you encrypt your password in your database if not just do $_POST['password'] == $password (not recommended)
-    if(($_POST['password']== $password)){
-      // no need to include the $_POST['password'] in your prepared statement since you will not be executing a SQL command to check for a match of passwords
-    } else {
-      // redirect if password is not a match to the ones in the database
-      header("Location: log2.php?error=IncorrectPassword");
+       
+        $stm = $db->prepare(" select * from users where email= ? and password = ? ");
+        $stm->execute([$email,$password]);
+        
+        if(empty($_SESSION['']))
+    {
+        header("Location:Login_success.php");
     }
-  
-  } 
-
-  if(!isset($_SESSION['email']) || $_SESSION['loggedin'] !== TRUE){
-    // redirects you if sessions are not present
-    header("Location: log2.php");
-  }
     else
     {
 
-echo "no entry";
+       echo "no entry";
     }
-    }catch (PDOException $ex){
-
+    }catch (PDOException $e) {
+        print("Error connecting to SQL Server.");
+        die(print_r($e));
     }
+    
 }
 ?>
 <!DOCTYPE html>
@@ -59,7 +46,7 @@ echo "no entry";
 </div>
 
 <div class="container">
-    <form action="log2.php" method="POST" >
+    <form action="logged.php" method="POST" >
      <label for ="email">Email</label><br><br>
      <input type="email" id="email" name ="email" size = "38" style="height:30px"  placeholder="Enter your email" required><br><br>
      <label for="password">Password</label><br><br>
@@ -70,7 +57,8 @@ echo "no entry";
      <p><a href="file:///C:/Users/Dell/Desktop/loginscreen/pass.html"><strong>Forgot password?</strong></a></p>
     <p>Don't have an account?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="file:///C:/Users/Dell/Desktop/loginscreen/account.html"> <strong>Create an
      account</strong></a></p> 
-     <input type="submit" class="button" name="login" value="Login">
+     
+     <button type="submit" class="button" name="a_login" >Login</button>
      
 </div>
 </form>
