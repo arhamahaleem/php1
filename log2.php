@@ -1,7 +1,42 @@
 <?php
-include('connection.php');
-include('login_success.php');
+session_start();
+if(isset($_POST['b_login'])){
+    $email =$_POST['email'];
+    $password =$_POST['password'];
+    try{
+        $conn = new PDO('mysql:host=localhost;dbname=newschool','admin','admin');
+       
+        $stmt = $conn->prepare('SELECT * FROM users WHERE email = ?');
+        $stmt->bind_param('s', $_POST['email']);
+        $stmt->execute();
 
+// Store the result so we can check it later
+$row = $stmt->fetch();
+if($row){
+
+    // use the 'password verify' only if you encrypt your password in your database if not just do $_POST['password'] == $password (not recommended)
+    if(($_POST['password']. $password)){
+      // no need to include the $_POST['password'] in your prepared statement since you will not be executing a SQL command to check for a match of passwords
+    } else {
+      // redirect if password is not a match to the ones in the database
+      header("Location: log2.php?error=IncorrectPassword");
+    }
+  
+  } 
+
+  if(!isset($_SESSION['email']) || $_SESSION['loggedin'] !== TRUE){
+    // redirects you if sessions are not present
+    header("Location: log2.php");
+  }
+    else
+    {
+
+echo "no entry";
+    }
+    }catch (PDOException $ex){
+
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
