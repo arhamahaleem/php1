@@ -8,17 +8,17 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
 
-    if(isset($_POST["login"]))
+    if(isset($_GET["login"]))
     {    
-         $email = $_POST['email'];
-          $password = $_POST['password'];
+         $email = $_GET['email'];
+          $password = $_GET['password'];
             $query = "SELECT * FROM Person WHERE email ='$email' AND password = '$password' ";
             $statement = $conn->prepare ($query);
         
        if(PDOStatement::rowCount()>0)
         {
             
-            $_SESSION["email"] = $_POST["email"];      
+            $_SESSION["email"] = $_GET["email"];      
         
             header ("Location:login_success.php");
         
