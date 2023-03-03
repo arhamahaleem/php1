@@ -59,7 +59,7 @@ echo "no entry";
 </div>
 
 <div class="container">
-    <form action="logged.php" method="POST" >
+    <form action="log2.php" method="POST" >
      <label for ="email">Email</label><br><br>
      <input type="email" id="email" name ="email" size = "38" style="height:30px"  placeholder="Enter your email" required><br><br>
      <label for="password">Password</label><br><br>
