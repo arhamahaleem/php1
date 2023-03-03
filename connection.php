@@ -14,11 +14,13 @@ try {
     {
         if(empty($_GET["email"]) || empty($_GET["password"]))
         {
-            $message = '<label>All filed is required</label>';
+            
+            $query = "SELECT * FROM Person WHERE email ='$email' AND password = '$password' ";
+            $statement = $conn->prepare ($query);
         }
         else{
-              $query = "SELECT * FROM Person WHERE email ='$email' AND password = '$password' ";
-            $statement = $conn -> prepare ($query);
+            $message = '<label>All filed is required</label>';
+            echo $message;
         }
         $count = $statement->rowCount();
         
