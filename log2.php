@@ -1,11 +1,14 @@
 <?php
 session_start();
-if(isset($_POST['b_login'])){
+if(isset($_POST['login'])){
     $email =$_POST['email'];
     $password =$_POST['password'];
     try{
-        $conn = new PDO('mysql:host=localhost;dbname=newschool','admin','admin');
        
+        $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+    
         $stmt = $conn->prepare('SELECT * FROM users WHERE email = ?');
         $stmt->bind_param('s', $_POST['email']);
         $stmt->execute();
