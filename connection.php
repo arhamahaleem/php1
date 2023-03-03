@@ -21,8 +21,8 @@ try {
             $statement = $conn -> prepare ($query);
         }
         $count = $statement->rowCount();
-        if(PDOStatement::rowCount()>0)
-              
+        
+        if($count>0)
         {
             
             $_SESSION["email"] = $_GET["email"];      
