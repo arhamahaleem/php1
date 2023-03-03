@@ -23,22 +23,7 @@ try {
               header('location:login.php');
             }
         
-       if(PDOStatement::rowCount()>0)
-        {
-            
-            $_SESSION["email"] = $_GET["email"];      
-            $_SESSION["password"] = $_GET["password"]; 
-            header ("Location:login_success.php");
-        
-         }
-         else{
-            $message =" Wrong email or password";
-            
-         }
-         if(isset($_SESSION['email']) || $_SESSION['loggedin'] !== TRUE){
-            
-            header("Location: login.php");
-          }
+       
           
 
     }
