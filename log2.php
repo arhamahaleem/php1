@@ -9,7 +9,7 @@ if(isset($_POST['login'])){
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
     
-        $stmt = $conn->prepare('SELECT * FROM users WHERE email = ?');
+        $stmt = $conn->prepare('SELECT * FROM Person WHERE email = ?');
         $stmt->bind_param('s', $_POST['email']);
         $stmt->execute();
 
