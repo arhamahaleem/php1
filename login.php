@@ -36,6 +36,7 @@ include('login_success.php');
      
 </div>
 </form>
+<div><?php echo $message ?></div>
 </body>
 </html>
 
