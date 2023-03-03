@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_POST['a_login'])){
+if(isset($_POST['a_login']))
     $email =$_POST['email'];
     $password =$_POST['password'];
     try{
@@ -11,7 +11,15 @@ if(isset($_POST['a_login'])){
        
         $stm = $db->prepare(" select * from users where email= ? and password = ? ");
         $stm->execute([$email,$password]);
-        
+        if($row){
+
+            
+            if($_POST['password']== $password){
+              // no need to include the $_POST['password'] in your prepared statement since you will not be executing a SQL command to check for a match of passwords
+            } else {
+              // redirect if password is not a match to the ones in the database
+              echo "IncorrectPassword" ;
+            }
         if(empty($_SESSION['']))
     {
         header("Location:Login_success.php");
@@ -21,12 +29,13 @@ if(isset($_POST['a_login'])){
 
        echo "no entry";
     }
-    }catch (PDOException $e) {
+}}
+    catch (PDOException $e) {
         print("Error connecting to SQL Server.");
         die(print_r($e));
     }
     
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
