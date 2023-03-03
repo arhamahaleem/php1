@@ -27,7 +27,10 @@ try {
             $message =" Wrong email or password";
             
          }
-        
+         if(!isset($_SESSION['email']) || $_SESSION['loggedin'] !== TRUE){
+            // redirects you if sessions are not present
+            header("Location: login.php");
+          }
 
     }
     
