@@ -14,7 +14,14 @@ try {
           $password = $_GET['password'];
             $query = "SELECT * FROM Person WHERE email ='$email' AND password = '$password' ";
             $statement = $conn->prepare ($query);
-            $row =$statement ->fetch_assoc();
+            $row =$statement->fetch_assoc();
+            $stmt->execute();
+            if($query->rowCount() > 0) {
+              $_SESSION['email'] = $email;
+              header('location:logout.php');
+            } else {
+              header('location:login.php');
+            }
         
        if(PDOStatement::rowCount()>0)
         {
@@ -32,9 +39,19 @@ try {
             
             header("Location: login.php");
           }
+          
 
     }
-    $conn =NULL;
+    
+    if(empty($_SESSION['email']))
+    {
+     header("Location:Login .php");
+    }
+else
+{
+
+header("Location:logout.php");
+}
 }
 
 catch (PDOException $e) {
