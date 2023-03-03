@@ -14,6 +14,7 @@ try {
           $password = $_GET['password'];
             $query = "SELECT * FROM Person WHERE email ='$email' AND password = '$password' ";
             $statement = $conn->prepare ($query);
+            $row =$statement ->fetch_assoc();
         
        if(PDOStatement::rowCount()>0)
         {
