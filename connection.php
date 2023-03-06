@@ -1,47 +1,35 @@
 
+
 <?php
-// PHP Data Objects(PDO) Sample Code:
 session_start();
 
-try {
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    // get username and password from the login form
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // connect to the database using PDO
+   
     $conn = new PDO("sqlsrv:server = tcp:testdbsqlserver2.database.windows.net,1433; Database = floteq_dev", "serveradmin2", "zxcvbnm1!");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
 
-    if(isset($_GET["login"]))
-    {    
-         $email = $_GET['email'];
-          $password = $_GET['password'];
-            $query = "SELECT * FROM Person WHERE email ='$email' AND password = '$password' ";
-            $statement = $conn->prepare ($query);
-            $row =$statement->fetch_assoc();
-         
-            if($query->rowCount() > 0) {
-              $_SESSION['email'] = $email;
-              header('location:logout.php');
-            } else {
-              header('location:login.php');
-            }
-        
-       
-          
+    // query the database to check if the user exists
+    $stmt = $conn->prepare("SELECT * FROM Person WHERE email=:email AND password=:password");
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':password', $password);
+    $stmt->execute();
 
+    if($stmt->rowCount() == 1) {
+        // set session variables
+        $_SESSION['email'] = $email;
+        $_SESSION['loggedin'] = true;
+
+        // redirect to the secure page
+        header("location: logged.php");
+    } else {
+        // display an error message
+        echo "Invalid username or password.";
     }
-    
-    if(empty($_SESSION['email']))
-    {
-     header("Location:Login .php");
-    }
-else
-{
-
-header("Location:logout.php");
-}
-}
-
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
 }
 ?>
 
